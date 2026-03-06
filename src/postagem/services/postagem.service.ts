@@ -8,8 +8,11 @@ import { DeleteResult } from "typeorm/browser";
 
 @Injectable()
 
+
 export class PostagemService{
-    constructor(@InjectRepository(Postagem) private postagemRepository:Repository<Postagem>)
+    constructor(
+    @InjectRepository(Postagem) 
+    private postagemRepository:Repository<Postagem>)
     {  
         
     } // repository é classe que tem metodos de crud e esta usando a tabela postagem
@@ -68,3 +71,5 @@ return titulo;
 
 
 }
+
+
