@@ -15,4 +15,4 @@ descricao:string
 @OneToMany(()=> Postagem,(x)=> x.tema)
 postagem:Postagem[]
 
-}
+}   

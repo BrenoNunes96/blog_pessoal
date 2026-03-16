@@ -6,6 +6,7 @@ import {HttpException, HttpStatus } from "@nestjs/common";
 import { DeleteResult } from "typeorm/browser";
 
 export class temaService{
+    
 constructor(
 @InjectRepository(tema) 
 private tema:Repository<tema> ){}
