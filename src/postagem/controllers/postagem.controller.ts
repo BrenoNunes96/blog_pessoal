@@ -1,8 +1,14 @@
-import { Postagem } from './../entities/postagem.entity';
-import { PostagemService } from './../services/postagem.service';
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
 
-    @Controller("/postagens") // endpoint da requisição via fetch ou axius api
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { LocalAuthGuard} from "../../auth/guard/local_auth.guard";
+import { Postagem } from "../entities/postagem.entity";
+import { PostagemService } from "../services/postagem.service";
+
+@ApiTags('Postagem')
+@UseGuards(LocalAuthGuard)
+@Controller("/postagens")
+@ApiBearerAuth()
     export class PostagemController{
 
      constructor(private readonly postagemService:PostagemService){}

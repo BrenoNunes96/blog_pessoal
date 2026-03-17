@@ -13,7 +13,7 @@ import { UsuarioService } from './services/UsuarioService';
     forwardRef(() =>AuthModule )
   ], 
   providers: [UsuarioService],
-  controllers: [UsuarioController],
+  controllers: [UsuarioController,],
   exports: [UsuarioService],
 })
 export class UsuarioModule {}

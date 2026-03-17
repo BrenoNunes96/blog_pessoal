@@ -1,10 +1,14 @@
-import { Controller, Get, HttpCode, HttpStatus, Post, Put, Delete, Param, ParseIntPipe, Body} from "@nestjs/common";
+import { Controller, Get, HttpCode, HttpStatus, Post, Put, Delete, Param, ParseIntPipe, Body, UseGuards} from "@nestjs/common";
 import { temaService } from "../service/tema.service";
 import {tema} from"../entities/tema.entity"
 import { DeleteResult } from "typeorm";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { LocalAuthGuard } from "../../auth/guard/local_auth.guard";
 
-
-@Controller("/tema")
+@ApiTags('Tema')
+@UseGuards(LocalAuthGuard)
+@Controller("/temas")
+@ApiBearerAuth()
 export class temaController{
 
 constructor(private readonly temaService: temaService){}
