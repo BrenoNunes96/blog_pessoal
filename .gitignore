@@ -1,0 +1,32 @@
+# Dependências
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compilação (Pasta onde o Nest gera o JS final)
+dist/
+build/
+
+# Variáveis de Ambiente (Segurança: NUNCA suba senhas/chaves aqui)
+.env
+.env.test
+.env.production
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Configurações de IDE (VS Code / WebStorm)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs e Cobertura de Testes
+logs/
+*.log
+coverage/
+.nyc_output
+
+# TypeScript
+*.tsbuildinfo
