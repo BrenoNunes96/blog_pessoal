@@ -30,10 +30,7 @@ export class Usuario {
     @ApiProperty() 
     foto: string
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ea00b1b6cbd821cfb8516b3a26457234ceb5000f
     @ApiProperty() 
     @OneToMany(() => Postagem, (postagem) => postagem.usuario)
     postagem: Postagem[]
