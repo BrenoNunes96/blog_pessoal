@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import {  LocalAuthGuard } from "../../auth/guard/local_auth.guard"
+import { JwtAuthGuard } from "../../auth/guard/jwt_auth.guard";
 import { Usuario } from "../entities/usuario.entity";
 import { UsuarioService } from "../services/UsuarioService";
 
@@ -10,14 +10,14 @@ import { UsuarioService } from "../services/UsuarioService";
 export class UsuarioController {
     constructor(private readonly usuarioService: UsuarioService) { }
 
-    @UseGuards(LocalAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('/all')
     @HttpCode(HttpStatus.OK)
     findAll(): Promise<Usuario[]> {
         return this.usuarioService.findAll();
     }
     
-    @UseGuards(LocalAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
     findById(@Param('id', ParseIntPipe) id: number): Promise<Usuario>{
@@ -30,7 +30,7 @@ export class UsuarioController {
         return await this.usuarioService.create(usuario);
     }
 
-    @UseGuards(LocalAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Put('/atualizar')
     @HttpCode(HttpStatus.OK)
     async update(@Body() usuario: Usuario): Promise<Usuario> {

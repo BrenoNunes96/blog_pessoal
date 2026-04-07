@@ -4,19 +4,19 @@ import { Postagem } from "../../postagem/entities/postagem.entity";
 import { tema } from "../../tema/entities/tema.entity";
 import { Usuario } from "../../usuario/entities/usuario.entity";
 
-@Injectable()
-export class DevService implements TypeOrmOptionsFactory {
+    @Injectable()
+    export class DevService implements TypeOrmOptionsFactory {
 
-    createTypeOrmOptions(): TypeOrmModuleOptions {
-        return {
-            type: 'mysql',
-            host: 'localhost',
-            port: 3306,
-            username: 'root',
-            password: 'root',
-            database: 'db_blogpessoal',
-            entities: [Postagem, tema, Usuario],
-            synchronize: true,
-    };
-  }
-}
+        createTypeOrmOptions(): TypeOrmModuleOptions {
+            return {
+                type: 'mysql',
+                host: 'localhost',
+                port: 3306,
+                username: 'root',
+                password: 'root',
+                database: 'db_blogpessoal',
+                entities: [Postagem, tema, Usuario],
+                synchronize: true,
+        };
+      }
+    }

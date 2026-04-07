@@ -11,13 +11,14 @@ import { Usuario } from './usuario/entities/usuario.entity';
 import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { ProdService } from './data/services/prod.service';
+import { DevService } from './data/services/dev.service';
 
 
 @Module({
   imports: [
   ConfigModule.forRoot(),
-TypeOrmModule.forRootAsync({
-	useClass: ProdService,
+TypeOrmModule.forRootAsync({  
+	useClass: DevService,
     imports: [ConfigModule],
 }),
     PostagemModule,
