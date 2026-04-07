@@ -3,10 +3,11 @@ import { temaService } from "../service/tema.service";
 import {tema} from"../entities/tema.entity"
 import { DeleteResult } from "typeorm";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { LocalAuthGuard } from "../../auth/guard/local_auth.guard";
+
+import { JwtAuthGuard } from "../../auth/guard/jwt_auth.guard";
 
 @ApiTags('Tema')
-@UseGuards(LocalAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Controller("/temas")
 @ApiBearerAuth()
 export class temaController{

@@ -1,6 +1,6 @@
 import { JwtService } from '@nestjs/jwt';
 
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { Bcrypt } from '../bcrypt/bcrypt';
 import { UsuarioLogin } from '../entities/usuarioLogin.entity';
 import { UsuarioService } from '../../usuario/services/UsuarioService';
@@ -14,16 +14,16 @@ export class AuthService{
         private bcrypt: Bcrypt
     ){ }
 
-    async validateUser(usuario: string, senha: string): Promise<any>{
+    async validateUser(username: string, password: string): Promise<any>{
 
-        const buscaUsuario = await this.usuarioService.findByUsuario(usuario)
+        const buscaUsuario = await this.usuarioService.findByUsuario(username)
 
-        if(!buscaUsuario)
-            throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND)
+        if (!buscaUsuario)
+            return null
 
-        const matchPassword = await this.bcrypt.compararSenhas(senha, buscaUsuario.senha)
+        const matchPassword = await this.bcrypt.compararSenhas(password, buscaUsuario.senha)
 
-        if(buscaUsuario && matchPassword){
+        if(matchPassword){
             const { senha, ...resposta } = buscaUsuario
             return resposta
         }
@@ -37,9 +37,11 @@ export class AuthService{
         const payload = { sub: usuarioLogin.usuario }
 
         const buscaUsuario = await this.usuarioService.findByUsuario(usuarioLogin.usuario)
-          if(buscaUsuario)
-        
-            return{
+
+        if (!buscaUsuario)
+          throw new UnauthorizedException('Usuário inválido!');
+
+        return{
             id: buscaUsuario.id,
             nome: buscaUsuario.nome,
             usuario: usuarioLogin.usuario,
@@ -48,5 +50,5 @@ export class AuthService{
             token: `Bearer ${this.jwtService.sign(payload)}`,
         }
 
-    }   // se tiver o usuario dentro da tabela de usuarios entao retorna 
+    }
 }

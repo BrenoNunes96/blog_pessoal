@@ -6,7 +6,7 @@ export class Bcrypt{
 
     async criptografarSenha(senha: string): Promise<string> {
 
-        const saltos: number = 10;
+        let saltos: number = 10;
         return await bcrypt.hash(senha, saltos)
 
     }
