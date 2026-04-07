@@ -19,7 +19,7 @@ import { LocalStrategy } from "./strategy/local.strategy";
 
     ],
     controllers: [AuthController],
-    providers: [Bcrypt, AuthService, LocalStrategy],
+    providers: [Bcrypt, AuthService, LocalStrategy,jwt_strategy],
     exports: [Bcrypt],
 })
 export class AuthModule {};
