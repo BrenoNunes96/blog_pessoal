@@ -30,10 +30,6 @@ export class Usuario {
     @ApiProperty() 
     foto: string
 
-    
-@Column({type:Date})
-datanascimento:Date
-
 
     @ApiProperty() 
     @OneToMany(() => Postagem, (postagem) => postagem.usuario)
