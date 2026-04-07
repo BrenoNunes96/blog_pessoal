@@ -7,6 +7,7 @@ import { jwtConstants } from "./constants/constants";
 import { AuthService } from "./services/authServices";
 import { AuthController } from "./controllers/authController";
 import { LocalStrategy } from "./strategy/local.strategy";
+import { JwtStrategy } from "./strategy/jwt.strategy"; // <-- 1. Importação adicionada aqui
 
 @Module({
     imports: [
@@ -19,7 +20,12 @@ import { LocalStrategy } from "./strategy/local.strategy";
 
     ],
     controllers: [AuthController],
-    providers: [Bcrypt, AuthService, LocalStrategy,jwt_strategy],
+    providers: [
+        Bcrypt, 
+        AuthService, 
+        LocalStrategy, 
+        JwtStrategy // <-- 2. Nome corrigido para a Classe (letra maiúscula)
+    ],
     exports: [Bcrypt],
 })
 export class AuthModule {};
