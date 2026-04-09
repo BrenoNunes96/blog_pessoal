@@ -6,7 +6,7 @@ import { Postagem } from "../entities/postagem.entity";
 import { PostagemService } from "../services/postagem.service";
 
 @ApiTags('Postagem')
-@UseGuards(LocalAuthGuard)
+@UseGuards(JwtAuthGuard) 
 @Controller("/postagens")
 @ApiBearerAuth()
     export class PostagemController{
