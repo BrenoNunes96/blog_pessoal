@@ -4,6 +4,7 @@ import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { LocalAuthGuard} from "../../auth/guard/local_auth.guard";
 import { Postagem } from "../entities/postagem.entity";
 import { PostagemService } from "../services/postagem.service";
+import { JwtAuthGuard } from "../../auth/guard/jwt_auth.guard";
 
 @ApiTags('Postagem')
 @UseGuards(JwtAuthGuard) 
